@@ -12,15 +12,32 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::prefix('home')->group(function() {
-//    Route::get('/', function (){
-//        return view('index');
-//    });
-//});
-Route::name('home')->group(function(){
-    Route::get('/', function () {
-        return view('home.index');
-
+Route::get('/', function () {
+    return view('home.index');
 });
+
+//home section routes group
+// Route::name('home')->group(function(){
+//
+//     Route::get('/', function () {
+//         return view('home.index');
+//     });
+//     Route::get('/about','aboutController@index');
+//
+// });
+
+//admin section routes group
+
+Route::name('admin')->group(function(){
+
+    Route::get('/manage', function () {
+        return view('admin.dashbord');
+    });
+    Route::get('/add', function () {
+        return view('home.add');
+    });
+    Route::get('/product', function () {
+        return view('home.product_page');
+    });
+//    Route()::get('/about/edit','AboutController@edit');
 });

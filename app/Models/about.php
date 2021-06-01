@@ -12,4 +12,5 @@ class about extends Model
     protected  $fillable=[
         'tell','email','text','address'
     ];
+
 }

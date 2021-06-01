@@ -10,6 +10,7 @@ class posts extends Model
     use HasFactory;
 
     protected $fillable=[
-        'brand','price','city','shasi','status','fuel','text','year','img'
+        'company','model','year','fuel','transfer',
+        'cilandr','VIN','color','price','packages','img','user_id'
         ];
 }
