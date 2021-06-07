@@ -1,66 +1,86 @@
-@extends('home.master')
+@extends('home.partials.master')
 @section('content')
+    @include('home.partials.messages')
 	<!--BEGIN CONTENT-->
 		<div id="content">
 			<div class="content">
 				<div class="breadcrumbs">
 					<a href="#">صفحه نخست</a>
 					<img src="{{asset('home/images/marker_2.gif')}}" alt=""/>
-					<span>اضافه کردن یک پیشنهاد</span>
+					<span>اضافه کردن خودروی جدید</span>
 				</div>
 				<div class="main_wrapper">
 					<div class="steps">
-						<span>1. پیشنهاد جدید</span>
-						<a href="#"><span>2. پیش نمایش</span></a>
-						<a href="#"><span>3. ارسال</span></a>
+						<span>تازه ترین خودروها
+                        </span>
+{{--						<a href="#"><span>2. پیش نمایش</span></a>--}}
+{{--						<a href="#"><span>3. ارسال</span></a>--}}
 					</div>
-					<h1><strong>فروختن</strong>وسیله نقلیه خود را</h1>
+					<h1><strong>   فروش  </strong>وسیله نقلیه   </h1>
 					<div class="message">
-						<h3>فروش خودرو خود را در<strong>AutoDealer</strong> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </h3>
-						<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. <br/>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. <br/>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. <br/>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
+						<h3>فروش خودرو خود را در<strong>وبسایت ما</strong> با اطمینان خاطر انجام دهید </h3>
+                        <p></p>
 					</div>
+
+
+                    {{--begin form --}}
+                    <form action="{{route('post.store')}}" method="post"  enctype="multipart/form-data">
+                        {{csrf_field()}}
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif;
+
+
+
+
 					<div class="sell_box sell_box_1">
-						<h2><strong>وسیله نقلیه</strong> داده ها</h2>
+						<h2><strong> وسیله نقلیه </strong> اطلاعات کلی </h2>
 						<div class="select_wrapper">
 							<label><span>* </span><strong>سازنده:</strong></label>
-							<select class="select_5">
+							<select name="company" class="select_5">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">آئودی</option>
-								<option value="2">مرسدس بنز</option>
-								<option value="3">بی ام و</option>
-								<option value="4">لکسوس</option>
-								<option value="5">لینکلن</option>
-								<option value="6">فورد</option>
-								<option value="7">فیات</option>
-								<option value="8">Dodge</option>
+								<option value="آئودی">آئودی</option>
+								<option value="مرسدس بنز">مرسدس بنز</option>
+								<option value="بی ام و">بی ام و</option>
+								<option value="لکسوس">لکسوس</option>
+								<option value="لینکلن">لینکلن</option>
+								<option value="فورد">فورد</option>
+								<option value="فیات">فیات</option>
+								<option value="Dodge">Dodge</option>
 							</select>
 						</div>
 						<div class="select_wrapper">
 							<label><span>* </span><strong>مدل: </strong></label>
-							<select class="select_5">
+							<select name="model" class="select_5">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">R8</option>
-								<option value="2">S500</option>
-								<option value="3">540i</option>
-								<option value="4">RX300</option>
-								<option value="5">هدایتگر</option>
-								<option value="6">برج ثور</option>
-								<option value="7">Doblo</option>
-								<option value="8">Viper</option>
+								<option value="R8">R8</option>
+								<option value="S500">S500</option>
+								<option value="540i">540i</option>
+								<option value="RX300">RX300</option>
+								<option value="هدایتگر">هدایتگر</option>
+								<option value="برج ثور">برج ثور</option>
+								<option value="Doblo">Doblo</option>
+								<option value="Viper">Viper</option>
 							</select>
 						</div>
 						<div class="select_wrapper">
 							<label><span>* </span><strong>ساخت:</strong></label>
-							<select class="select_5">
+							<select name="year" class="select_5">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">2013</option>
-								<option value="2">2012</option>
-								<option value="3">2011</option>
-								<option value="4">2010</option>
-								<option value="5">2009</option>
-								<option value="6">2008</option>
-								<option value="7">2007</option>
-								<option value="8">2006</option>
+								<option value="2021">2021</option>
+								<option value="2020">2020</option>
+								<option value="2019">2019</option>
+								<option value="2018">2018</option>
+								<option value="2017">2017</option>
+								<option value="2016">2016</option>
+								<option value="2015">2015</option>
 							</select>
 						</div>
 {{--						<div class="select_wrapper last">--}}
@@ -76,49 +96,49 @@
 {{--						</div>--}}
 						<div class="select_wrapper">
 							<label><span>* </span><strong>نوع سوخت:</strong></label>
-							<select class="select_5">
+							<select name="fuel" class="select_5">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">92</option>
-								<option value="2">95</option>
-								<option value="3">دیزل</option>
+								<option value="92">92</option>
+								<option value="95">95</option>
+								<option value="دیزل">دیزل</option>
 							</select>
 						</div>
 						<div class="select_wrapper">
 							<label><span>* </span><strong>انتقال</strong></label>
-							<select class="select_5">
+							<select class="select_5" name="transfer">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">خودکار</option>
-								<option value="2">مکانیک</option>
+								<option value="خودکار">خودکار</option>
+								<option value="مکانیک">مکانیک</option>
 							</select>
 						</div>
 
 						<div class="select_wrapper last">
 							<label><span>* </span><strong>Cilindrics </strong> (in cm3):</label>
-							<select class="select_5">
+							<select class="select_5" name="cilandr">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">1500</option>
-								<option value="2">2000</option>
-								<option value="3">2500</option>
-								<option value="4">3000</option>
-								<option value="5">4000</option>
+								<option value="1500">1500</option>
+								<option value="2000">2000</option>
+								<option value="2500">2500</option>
+								<option value="3000">3000</option>
+								<option value="4000">4000</option>
 							</select>
 						</div>
 
 
 						<div class="input_wrapper large">
 							<label><span>* </span><strong>VIN / شماره شاسی:</strong></label>
-							<input type="text" class="txb large" value=""/>
+							<input name="VIN" type="text" class="txb large" value=""/>
 						</div>
 						<div class="select_wrapper last">
 							<label><span>* </span><strong>Color:</strong></label>
-							<select class="select_5">
+							<select class="select_5" name="color">
 								<option value="0">انتخاب کنید</option>
-								<option value="1">قرمز</option>
-								<option value="2">سبز</option>
-								<option value="3">آبی</option>
-								<option value="4">خاکستری</option>
-								<option value="5">سفید</option>
-								<option value="6">سیاه</option>
+								<option value="قرمز">قرمز</option>
+								<option value="سبز">سبز</option>
+								<option value="آبی">آبی</option>
+								<option value="خاکستری">خاکستری</option>
+								<option value="سفید">سفید</option>
+								<option value="سیاه">سیاه</option>
 							</select>
 						</div>
 						<div class="clear"></div>
@@ -128,37 +148,37 @@
 						<div class="chb_group">
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="ABS" name="packages[]" checked="checked"/>
 								</span>
 								<label>ABS</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="سقف پانوراما" name="packages[]" checked="checked"/>
 								</span>
 								<label>سقف پانوراما</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="قفل دیفرانسیل" name="packages[]" checked="checked"/>
 								</span>
 								<label>قفل دیفرانسیل</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="مخمل داخلی" name="packages[]" checked="checked"/>
 								</span>
 								<label>مخمل داخلی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="رادیو / CD " name="packages[]" checked="checked"/>
 								</span>
 								<label>رادیو / CD</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="سیستم تعلیق قابل تنظیم" name="packages[]" checked="checked"/>
 								</span>
 								<label>سیستم تعلیق قابل تنظیم</label>
 							</span>
@@ -166,37 +186,37 @@
 						<div class="chb_group">
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="EDS" name="packages[]" checked="checked"/>
 								</span>
 								<label>EDS</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="چارچوب حفاظت" name="packages[]" checked="checked"/>
 								</span>
 								<label>چارچوب حفاظت</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="شیشه رنگی" name="packages[]" checked="checked"/>
 								</span>
 								<label>شیشه رنگی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="چرخ های آلیاژی" name="packages[]" checked="checked"/>
 								</span>
 								<label>چرخ های آلیاژی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="صندلی های گرم شده" name="packages[]" checked="checked"/>
 								</span>
 								<label>صندلی های گرم شده</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="اثاثه یا لوازم داخلی چرمی" name="packages[]" checked="checked"/>
 								</span>
 								<label>اثاثه یا لوازم داخلی چرمی</label>
 							</span>
@@ -204,37 +224,37 @@
 						<div class="chb_group">
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="ESP" name="packages[]" checked="checked"/>
 								</span>
 								<label>ESP</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="یدک کش" name="packages[]" checked="checked"/>
 								</span>
 								<label>یدک کش</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="پنجره های برقی" name="packages[]" checked="checked"/>
 								</span>
 								<label>پنجره های برقی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="آینه های برقی" name="packages[]" checked="checked"/>
 								</span>
 								<label>آینه های برقی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="سنسور پارکینگ" name="packages[]" checked="checked"/>
 								</span>
 								<label>سنسور پارکینگ</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="هاشور زدن" name="packages[]" checked="checked"/>
 								</span>
 								<label>هاشور زدن</label>
 							</span>
@@ -243,37 +263,37 @@
 						<div class="chb_group">
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="تهویه مطبوع" name="packages[]" checked="checked"/>
 								</span>
 								<label>تهویه مطبوع</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="کنترل کشش" name="packages[]" checked="checked"/>
 								</span>
 								<label>کنترل کشش</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="اندازد" name="packages[]" checked="checked"/>
 								</span>
 								<label>اندازد</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="جلو اتومبیل گرم" name="packages[]" checked="checked"/>
 								</span>
 								<label>جلو اتومبیل گرم</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="سنسور باران" name="packages[]" checked="checked"/>
 								</span>
 								<label>سنسور باران</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="زنون" name="packages[]" checked="checked"/>
 								</span>
 								<label>زنون</label>
 							</span>
@@ -281,37 +301,37 @@
 						<div class="chb_group">
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="کیسه هوا" name="packages[]" checked="checked"/>
 								</span>
 								<label>کیسه هوا</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="کامپیوتر هیئت مدیره" name="packages[]" checked="checked"/>
 								</span>
 								<label>کامپیوتر هیئت مدیره</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="گرمایش کمکی" name="packages[]" checked="checked"/>
 								</span>
 								<label>گرمایش کمکی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="خلبان اتوماتیک" name="packages[]" checked="checked"/>
 								</span>
 								<label>خلبان اتوماتیک</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="فرمان خودکار" name="packages[]" checked="checked"/>
 								</span>
 								<label>فرمان خودکار</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="4WD" name="packages[]" checked="checked"/>
 								</span>
 								<label>4WD</label>
 							</span>
@@ -319,31 +339,31 @@
 						<div class="chb_group last">
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="زنگ خطر" name="packages[]" checked="checked"/>
 								</span>
 								<label>زنگ خطر</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="کنترل فرمان" name="packages[]" checked="checked"/>
 								</span>
 								<label>کنترل فرمان</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="قفل مرکزی" name="packages[]" checked="checked"/>
 								</span>
 								<label>قفل مرکزی</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="چراغهای مه شکن" name="packages[]" checked="checked"/>
 								</span>
 								<label>چراغهای مه شکن</label>
 							</span>
 							<span class="custom_chb_wrapper">
 								<span class="custom_chb">
-									<input type="checkbox" name="" checked="checked"/>
+									<input type="checkbox" value="سیستم ناوبری" name="packages[]" checked="checked"/>
 								</span>
 								<label>سیستم ناوبری</label>
 							</span>
@@ -351,135 +371,52 @@
 						<div class="clear"></div>
 					</div>
 
-
 					<div class="sell_box sell_box_3">
 						<h2><strong>وسیله نقلیه</strong> قیمت</h2>
 						<div class="select_wrapper">
 							<label><span>* </span><strong>قیمت: </strong></label>
-							<input type="text" class="txb" value="0.00" onblur="if(this.value=='') this.value='0.00';" onfocus="if(this.value=='0.00') this.value='';" />
+							<input name="price" type="text" class="txb" value="0.00" onblur="if(this.value=='') this.value='0.00';" onfocus="if(this.value=='0.00') this.value='';" />
 						</div>
-						<div class="input_wrapper">
-							<label><span>* </span><strong>واحد پول: </strong></label>
-							<select class="select_5">
-								<option value="0">Rials</option>
-								<option value="1">USD</option>
-                                <option value="2">Euro</option>
-							</select>
-						</div>
-						<div class="single_chb_wrapper">
-							<span class="custom_chb_wrapper">
-								<span class="custom_chb">
-									<input type="checkbox" name=""/>
-								</span>
-								<label>قیمت قابل مذاکره</label>
-							</span>
-						</div>
+
 						<div class="clear"></div>
 					</div>
 					<div class="sell_box sell_box_4">
 						<h2><strong>وسیله نقلیه</strong> عکس</h2>
 						<div class="foto_wrapper">
-							<a href="#">
-								<img src="images/upload.png" alt="" class="upload"/>
-								آپلود عکس
-							</a>
+                            <div class="form-group">
+                                <input  name="file1" type="file" class="form-control">
+                            </div>
 						</div>
 						<div class="foto_wrapper">
-							<a href="#">
-								<img src="images/upload.png" alt="" class="upload"/>
-								آپلود عکس
-							</a>
-						</div>
-						<div class="foto_wrapper">
-							<a href="#">
-								<img src="images/upload.png" alt="" class="upload"/>
-								آپلود عکس
-							</a>
-						</div>
-						<div class="foto_wrapper">
-							<a href="#">
-								<img src="images/upload.png" alt="" class="upload"/>
-								آپلود عکس
-							</a>
-						</div>
-						<div class="foto_wrapper">
-							<a href="#">
-								<img src="images/upload.png" alt="" class="upload"/>
-							آپلود عکس
-							</a>
+                            <div class="form-group">
+                                <input  name="file2" type="file" class="form-control">
+                            </div>
 						</div>
 						<div class="foto_wrapper last">
-							<a href="#">
-								<img src="images/upload.png" alt="" class="upload"/>
-								آپلود عکس
-							</a>
+                            <div class="form-group">
+                                <input  name="file3" type="file" class="form-control">
+                            </div>
+                        </div>
+
 						</div>
 						<div class="clear"></div>
-					</div>
-					<div class="sell_box sell_box_5">
-						<h2><strong>فروشنده</strong> جزئیات</h2>
-						<div class="input_wrapper">
-							<label><span>* </span><strong>نام: </strong></label>
-							<input type="text" class="txb" value=""/>
-						</div>
-						<div class="input_wrapper">
-							<label><span>* </span><strong>تلفن: </strong></label>
-							<input type="text" class="txb" value=""/>
-						</div>
-						<div class="input_wrapper">
-							<label><span>* </span><strong>تلفن 2: </strong></label>
-							<input type="text" class="txb" value=""/>
-						</div>
-						<div class="input_wrapper last">
-							<label><span>* </span><strong>شهر:</strong></label>
-							<input type="text" class="txb" value=""/>
-						</div>
-						<div class="select_wrapper">
-							<label><strong>کشور: </strong></label>
-							<select class="select_5">
-								<option value="0">انتخاب کنید</option>
-								<option value="1">آلمان</option>
-								<option value="2">بریتانیا</option>
-								<option value="3">ایالات متحده آمریکا</option>
-								<option value="4">چین</option>
-								<option value="5">ژاپن</option>
-								<option value="6">روسیه</option>
-								<option value="7">اوکراین</option>
-							</select>
-						</div>
-						<div class="select_wrapper">
-							<label><strong>وضعیت: </strong></label>
-							<select class="select_5">
-								<option value="0">انتخاب کنید</option>
-								<option value="1">آلمان</option>
-								<option value="2">بریتانیا</option>
-								<option value="3">ایالات متحده آمریکا</option>
-								<option value="4">چین</option>
-								<option value="5">ژاپن</option>
-								<option value="6">روسیه</option>
-								<option value="7">اوکراین</option>
-							</select>
-						</div>
-						<div class="input_wrapper">
-							<label><span>* </span><strong>پست الکترونیک: </strong></label>
-							<input type="text" class="txb" value=""/>
-						</div>
-						<div class="input_wrapper last">
-							<label><span>* </span><strong>کلمه عبور:</strong></label>
-							<input type="password" class="txb" value=""/>
-						</div>
-						<div class="clear"></div>
-					</div>
+
 					<div class="sell_submit_wrapper">
 						<span class="custom_chb_wrapper fL">
 							<span class="custom_chb">
-								<input type="checkbox" name=""/>
+								<input type="checkbox" name="agree"/>
 							</span>
-							<label>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</label>
+							<label>از اطلاعات وارد شده اطمینان کامل دارم </label>
 						</span>
-						<input type="submit" value="Submit" class="sell_submit"/>
+
+
+
+
+						<input type="submit" value="ثبت"  class="sell_submit"/>
+
 						<div class="clear"></div>
 					</div>
+                </form>
 				</div>
 			</div>
 		</div>

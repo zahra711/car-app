@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class about extends Model
 {
     use HasFactory;
-
-    protected  $fillable=[
-        'tell','email','text','address'
-    ];
+//
+//    protected  $fillable=[
+//        'tell','email','text','address'
+//    ];
 
 }

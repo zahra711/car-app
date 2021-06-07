@@ -9,7 +9,7 @@ class comment extends Model
 {
     use HasFactory;
 
-    protected  $fillable=[
-        'text'
-    ];
+//    protected  $fillable=[
+//        'text'
+//    ];
 }

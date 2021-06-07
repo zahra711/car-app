@@ -14,20 +14,22 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('brand');
-            $table->integer('price');
-            $table->string('city');
-            $table->string('shasi');
-            $table->enum('status');
-            $table->string('fuel');
+            $table->bigInteger('id')->primary();
+            $table->string('company');
+            $table->string('model');
             $table->integer('year');
-            $table->string('text');
+            $table->string('fuel');
+            $table->string('transfer');
+            $table->integer('cilandr');
+            $table->string('VIN');
+            $table->string('color');
+            $table->bigInteger('price');
+            $table->json('psckages');
             $table->string('img');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

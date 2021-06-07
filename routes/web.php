@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,11 @@ Route::get('/', function () {
 //
 // });
 
+
+Route::any('/add','PostController@index');
+
+Route::post('/addstore','PostController@store')->name('post.store');
+
 //admin section routes group
 
 Route::name('admin')->group(function(){
@@ -33,11 +39,23 @@ Route::name('admin')->group(function(){
     Route::get('/manage', function () {
         return view('admin.dashbord');
     });
-    Route::get('/add', function () {
-        return view('home.add');
-    });
     Route::get('/product', function () {
         return view('home.product_page');
     });
+
 //    Route()::get('/about/edit','AboutController@edit');
+
+//    Route::resource('/post','PostController`');
+//    Route::get('post', 'PostController@index');
+    Route::get('post', 'PostController@index');
+    Route::get('post/store', 'PostController@store');
+    Route::get('post/show/{id}', 'PostController@show');
+    Route::get('post/edit/{id}', 'PostController@edit');
+    Route::get('post/update/{id}', 'PostController@update');
+    Route::get('post/destroy/{id}', 'PostController@destroy');
+    Route::get('post/create', 'PostController@create');
+
+    Route::fallback(function () {
+        return view('home.404');
+    });
 });

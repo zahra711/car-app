@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('home/css/style600.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('home/css/style500.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('home/css/style400.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('home/css/upload.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('home/js/upload.js')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('home/css/jquery.fancybox-1.3.4.css')}}" media="screen" />
     <!--[if IE]>
     <link href="css/style_ie.css" rel="stylesheet" type="text/css">
@@ -72,8 +74,8 @@
             </div>
             <div id="search_form">
                 <form method="get" action="#">
-                    <input type="text" onblur="if(this.value=='') this.value='Search on site';" onfocus="if(this.value=='Search on site') this.value='';" value="Search on site" class="txb_search"/>
-                    <input type="submit" value="Search" class="btn_search"/>
+                    <input type="text" onblur="if(this.value=='') this.value='Search on site';" onfocus="if(this.value=='Search on site') this.value='';" value="جستجو کنید" class="txb_search"/>
+                    <input type="submit" value="جستجو" class="btn_search"/>
                 </form>
             </div>
         </div>

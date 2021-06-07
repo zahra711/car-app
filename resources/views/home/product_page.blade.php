@@ -1,4 +1,4 @@
-@extends('home.master')
+@extends('home.partials.master')
 @section('content')
 <!--BEGIN CONTENT-->
 		<div id="content">
