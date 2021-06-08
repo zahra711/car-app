@@ -31,14 +31,20 @@ Route::get('/', function () {
 Route::any('/add','PostController@index');
 
 Route::post('/addstore','PostController@store')->name('post.store');
-
+Route::post('/showAddedCar','AjaxController@showAddedCar');
+Route::post('/showUsers','AjaxController@showUsers');
+Route::Delete('/postdelete','PostController@destroy');
+Route::get('/message',function () {
+        return view('home.message');
+    });
 //admin section routes group
+
+Route::get('/manage', function () {
+    return view('admin.dashbord');
+});
 
 Route::name('admin')->group(function(){
 
-    Route::get('/manage', function () {
-        return view('admin.dashbord');
-    });
     Route::get('/product', function () {
         return view('home.product_page');
     });
